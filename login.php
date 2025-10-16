@@ -41,3 +41,4 @@ if($demail==$uemail){
     echo "invalid Email";
 }
 }
+?>
