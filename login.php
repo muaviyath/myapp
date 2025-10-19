@@ -1,3 +1,5 @@
+ 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +18,9 @@
     <label>Password</label><br>
     <input type="password" name="password"><br>
     <br>
-    <button type="submit">LOGIN</button>
+    <input type="submit" value="login">
+    <br>
+    <Button type="reset" >Clear</Button>
     </form>
 </body>
 </html>
@@ -26,19 +30,21 @@
 $demail= "ibrahim@123";
 $dpassword= "123";
 
-if(isset($_POST["email"]) && isset($_POST["password"])){
-    $uemail= $_POST["email"];
-    $upassword= $_POST["password"];
+if(isset($_POST["email"])){
 
-if($demail==$uemail){
-    
-    if($dpassword==$upassword){
-        echo "Login";
+    if(!empty($_POST["email"]) && !empty($_POST["password"])){
+
+       
+        if($_POST["email"] == $demail && $_POST["password"] == $dpassword){
+
+            session_start();
+            $_SESSION["user"] = $_POST["email"]; 
+            header("location: home.php");
+        }else{
+            echo "Invalid password or email";
+        }
     }else{
-        echo "Invalid Password";
+
+        header("location: login.php");
     }
-    }else{
-    echo "invalid Email";
 }
-}
-?>
